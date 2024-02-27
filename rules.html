@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px;
+            background-color: #0d0d0d; /* Dark background */
+            color: #39ff14; /* Neon Green text */
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left; /* Align text to the left */
+        }
+        h1, h2 {
+            color: #39ff14; /* Neon Green */
+            text-align: center; /* Center align headings */
+        }
+        p {
+            color: #a9a9a9; /* Light Gray text */
+            text-align: center; /* Align text to the left */
+        }
+        #h{
+            color: #a9a9a9; /* Light Gray text */
+            text-align: left; /* Align text to the left */
+        }
+        ul {
+            color: white; /* White text */
+        }
+        ul li {
+            margin-bottom: 10px; /* Add spacing between list items */
+        }
+        .logo {
+            max-width: 200px; /* Set maximum width for the logo */
+            margin-bottom: 20px; /* Add some space below the logo */
+            display: block; /* Ensure the logo is centered */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo img {
+            width: 200px; /* Set the logo width */
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 30px; /* Add space above the buttons */
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #39ff14; /* Neon Green */
+            color: black; /* Black text */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #4caf50; /* Darker Neon Green on hover */
+        }
+        canvas {
+            position: fixed; /* Fixed position */
+            opacity: 30%;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Behind other content */
+            pointer-events: none; /* Allow clicking through */
+        }
+    </style>
+</head>
+<body>
+    <canvas>
+            
+    </canvas>
+    <div class="content">
+        <img class="logo" src="XDEV png.png" alt="CodeCadet Logo">
+        <br>
+        <br>
+        <p id="h">Welcome to the CodeCadet hacking playground! Before you dive into the challenges, please review the following guidelines:</p>
+        <ul>
+            <li>Master the art of exploration and experimentation.</li>
+            <li>Never underestimate the power of creativity and curiosity.</li>
+            <li>Keep your mind open to endless possibilities.</li>
+            <li>Embrace the challenge, for it is the path to mastery.</li>
+            <li>Respect your fellow hackers and their craft.</li>
+            <li>Share knowledge generously and help others grow.</li>
+            <li>Stay vigilant, stay curious, and above all, stay hacking!</li>
+        </ul>
+        <br>
+        <p>Happy hacking, and may the source be with you!</p>
+        <div class="btn-container">
+            <a href="index.html" class="btn">Exercises</a>
+            <a href="guide.html" class="btn">Guide</a>
+            <a href="#" class="btn">Rules</a>
+            <a href="compiler.html" class="btn">XDEV Compiler</a>
+        </div>
+        <p>&copy; 2024 CodeCadet. All rights reserved.</p>
+    </div>
+    <script>
+
+        var canvas = document.querySelector('canvas'),
+            ctx = canvas.getContext('2d');
+        
+        // Setting the width and height of the canvas
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Setting up the letters
+        var letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ';
+        letters = letters.split('');
+        
+        // Setting up the columns
+        var fontSize = 10,
+            columns = canvas.width / fontSize;
+        
+        // Setting up the drops
+        var drops = [];
+        for (var i = 0; i < columns; i++) {
+          drops[i] = 1;
+        }
+        
+        // Setting up the draw function
+        function draw() {
+          ctx.fillStyle = 'rgba(0, 0, 0, .1)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          for (var i = 0; i < drops.length; i++) {
+            var text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillStyle = '#0f0';
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            drops[i]++;
+            if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
+              drops[i] = 0;
+            }
+          }
+        }
+        
+        // Loop the animation
+        setInterval(draw, 33);
+                    </script>
+</body>
+</html>

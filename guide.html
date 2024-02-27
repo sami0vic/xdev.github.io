@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide: Using VS Code</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px;
+            background-color: #0d0d0d; /* Dark background */
+            color: #39ff14; /* Neon Green */
+        }
+        .guide-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left; /* Align text to the left */
+        }
+        h1 {
+            color: #39ff14; /* Neon Green */
+            text-align: center; /* Center align headings */
+        }
+        h2 {
+            color: #39ff14; /* Neon Green */
+            text-align: left; /* Align left */
+        }
+        p {
+            color: white; /* White text */
+            text-align: left; /* Align left */
+        }
+        a {
+            color: #39ff14; /* Neon Green */
+            text-decoration: none; /* Remove underline */
+            transition: color 0.3s; /* Smooth color transition on hover */
+        }
+        a:hover {
+            color: #4caf50; /* Darker Neon Green on hover */
+        }
+        .logo {
+            max-width: 200px; /* Set maximum width for the logo */
+            margin-bottom: 20px; /* Add some space below the logo */
+            display: block; /* Ensure the logo is centered */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-container {
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space buttons evenly */
+        }
+        .btn {
+            background-color: #39ff14;
+            color: black;
+            padding: 10px; /* Adjust padding */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            flex: 1; /* Equal width for each button */
+            max-width: calc(33.33% - 20px); /* Divide width by 3 */
+            text-decoration: none; /* Remove underline */
+            text-align: center; /* Center align text */
+            margin-right: 10px; /* Add space between buttons */
+        }
+        .btn:last-child {
+            margin-right: 0; /* Remove margin from last button */
+        }
+        .btn:hover {
+            background-color: #4caf50;
+        }
+        canvas {
+            position: fixed; /* Fixed position */
+            opacity: 80%;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Behind other content */
+            pointer-events: none; /* Allow clicking through */
+        }
+    </style>
+</head>
+<body>
+    <canvas>
+            
+    </canvas>
+    <div class="guide-container">
+        <img class="logo" src="XDEV png.png" alt="VS Code Logo">
+        <br>
+        <div class="btn-container">
+            <a href="index.html" class="btn">Exercises</a>
+            <a href="#" class="btn">Guide</a>
+            <a href="rules.html" class="btn">Rules</a>
+            <a href="compiler.html" class="btn">XDEV Compiler</a>
+        </div>
+        <br>
+        <h1>Guide: Using VS Code</h1>
+        <h2>Installation</h2>
+        <p>Download and install Visual Studio Code from the <a href="https://code.visualstudio.com/download">official website.</a></p>
+        <h2>Basic Setup</h2>
+        <p>Configure your preferred settings, install necessary extensions, and set up version control if needed.</p>
+        <h2>Editing Files</h2>
+        <p>Open files and folders in VS Code, edit code, use shortcuts for common tasks, and explore advanced editing features.</p>
+        <h2>Debugging</h2>
+        <p>Set breakpoints, run and debug code, inspect variables, and use the debugger tools effectively.</p>
+        <h2>Extensions</h2>
+        <p>Explore the marketplace, install useful extensions for your workflow, and customize VS Code to suit your needs.</p>
+        <h2>Version Control</h2>
+        <p>Integrate with Git, manage repositories, commit changes, and collaborate with others using version control features.</p>
+        <h2>Customization</h2>
+        <p>Personalize your VS Code experience with themes, keybindings, and other customization options.</p>
+        <h2>Resources</h2>
+        <p>Find documentation, tutorials, and community support to help you make the most of VS Code.</p>
+    </div>
+    <script>
+
+        var canvas = document.querySelector('canvas'),
+            ctx = canvas.getContext('2d');
+        
+        // Setting the width and height of the canvas
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Setting up the letters
+        var letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ';
+        letters = letters.split('');
+        
+        // Setting up the columns
+        var fontSize = 10,
+            columns = canvas.width / fontSize;
+        
+        // Setting up the drops
+        var drops = [];
+        for (var i = 0; i < columns; i++) {
+          drops[i] = 1;
+        }
+        
+        // Setting up the draw function
+        function draw() {
+          ctx.fillStyle = 'rgba(0, 0, 0, .1)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          for (var i = 0; i < drops.length; i++) {
+            var text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillStyle = '#0f0';
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            drops[i]++;
+            if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
+              drops[i] = 0;
+            }
+          }
+        }
+        
+        // Loop the animation
+        setInterval(draw, 33);
+                    </script>
+</body>
+</html>
